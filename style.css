@@ -1230,3 +1230,54 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino 
 .liven-title { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 10px; }
 .live-notice ul { padding-left: 16px; }
 .live-notice li { font-size: 12px; color: var(--text-sub); line-height: 1.8; }
+
+/* =============================================
+   v4.0 新增样式 — AI支付402协议模块
+   ============================================= */
+
+/* AI支付专区卡片 */
+.ai-pay-service-card { transition: all 0.2s; }
+.ai-pay-service-card:active { transform: scale(0.98); background: rgba(241,143,1,0.03) !important; }
+
+/* 支付方式选中态 */
+.aipay-method-card { transition: all 0.2s; }
+.aipay-method-card:active { transform: scale(0.98); }
+
+/* 402协议说明页步骤号 */
+.ai-pay-step-num {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700; flex-shrink: 0;
+}
+
+/* 交易记录状态标签 */
+.aipay-status-badge { font-size: 10px; padding: 2px 7px; border-radius: 6px; }
+
+/* 支付弹窗动画 */
+.modal-content { animation: fadeIn 0.22s ease forwards; }
+
+/* 商城AI支付Tab高亮 */
+.nbt-tab[style*="var(--accent)"] {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-color: var(--accent) !important;
+  font-weight: 600;
+}
+
+/* AI支付专区顶部统计卡片 */
+.ai-pay-stat-card {
+  background: rgba(255,255,255,0.08); border-radius: 10px;
+  padding: 10px; text-align: center;
+}
+
+/* 链上凭证文字 */
+.tx-hash { font-family: 'Courier New', monospace; font-size: 10px; color: var(--text-muted); word-break: break-all; }
+
+/* 价格大字 */
+.ai-pay-price { font-size: 28px; font-weight: 800; color: var(--accent); }
+
+/* 响应式：小屏适配 */
+@media (max-width: 380px) {
+  .ai-pay-price { font-size: 22px; }
+  .ai-pay-stat-card { padding: 8px 6px; }
+}

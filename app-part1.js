@@ -69,6 +69,13 @@ function updateAllTabBars(pageId) {
     'page-brand': ['tab-rank', 'tab-rank2'],
     'page-mine': ['tab-mine', 'tab-mine2']
   };
+  // v4.0 AI支付402协议页面（无底部TabBar）
+  const noTabPages = ['page-ai-pay-402','page-ai-pay-mall','page-ai-pay-records'];
+  if (noTabPages.indexOf(pageId) !== -1) {
+    document.querySelectorAll('.tab-bar').forEach(function(tb){ tb.style.display = 'none'; });
+    return;
+  }
+  document.querySelectorAll('.tab-bar').forEach(function(tb){ tb.style.display = ''; });
   const ids = tabMap[pageId] || [];
   ids.forEach(id => {
     const el = document.getElementById(id);
@@ -946,6 +953,10 @@ window.render_page_mall = function() {
 };
 
 function filterMall(type, el) {
+  if (type === 'ai-pay') {
+    navigate('page-ai-pay-mall');
+    return;
+  }
   currentMallFilter = type;
   if (el) {
     document.querySelectorAll('#page-mall .nbt-tab').forEach(t => t.classList.remove('active'));

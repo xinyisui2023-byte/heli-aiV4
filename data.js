@@ -619,6 +619,22 @@ const API = {
   },
 
   async brainChat(mode, message) {
+    // 优先调用 AI 引擎，失败自动降级到模拟回复
+    try {
+      var msgs = Store.get('brainMessages');
+      var history = msgs[mode] || [];
+      var result = await AI_ENGINE.chat(mode, message, history);
+      if (result && result.reply) {
+        return { success: true, reply: result.reply };
+      }
+    } catch(e) {
+      console.warn('[brainChat] AI引擎调用失败，降级模拟回复:', e.message);
+    }
+    // 降级：原模拟回复逻辑
+    return this._brainChatSimulate(mode, message);
+  },
+
+  async _brainChatSimulate(mode, message) {
     await sleep(800 + Math.random() * 600);
     const responses = {
       c: {

@@ -70,7 +70,7 @@ function updateAllTabBars(pageId) {
     'page-mine': ['tab-mine', 'tab-mine2']
   };
   // v4.0 AI支付402协议页面（无底部TabBar）
-  const noTabPages = ['page-ai-pay-402','page-ai-pay-mall','page-ai-pay-records'];
+  const noTabPages = ['page-ai-pay-402','page-ai-pay-mall','page-ai-pay-records','page-ai-settings'];
   if (noTabPages.indexOf(pageId) !== -1) {
     document.querySelectorAll('.tab-bar').forEach(function(tb){ tb.style.display = 'none'; });
     return;
@@ -739,6 +739,11 @@ window.render_page_mine = function() {
       <div class="mine-menu-item" onclick="navigate('page-mp-explain')">
         <div class="mmi-icon">💎</div>
         <div class="mmi-label">MP意义积分说明</div>
+        <div class="mmi-arrow">›</div>
+      </div>
+      <div class="mine-menu-item" onclick="navigate('page-ai-settings')">
+        <div class="mmi-icon">🤖</div>
+        <div class="mmi-label">AI 模型设置</div>
         <div class="mmi-arrow">›</div>
       </div>
       <div class="mine-menu-item" onclick="navigate('page-agent')">

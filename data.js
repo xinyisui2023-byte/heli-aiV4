@@ -177,9 +177,55 @@ const MOCK_DATA = {
       { id: 't5', title: '商汤科技日日新大模型：实测报告与产业应用', category: '公司研究', author: 'AI评测室', avatar: '📊', likes: 1024, comments: 312, views: 24100, time: '8小时前', tags: ['AI大模型', '商汤'], hot: false },
       { id: 't6', title: '上市公司ESG评级上升，能否带动治理热度？', category: '治理讨论', author: 'ESG研究员', avatar: '🌍', likes: 456, comments: 123, views: 9800, time: '1天前', tags: ['ESG', '公司治理'], hot: false },
       { id: 't7', title: '《智造者》预热的背后：综艺如何赋能产业叙事？', category: '行业动态', author: '传媒观察', avatar: '🎬', likes: 789, comments: 267, views: 18700, time: '6小时前', tags: ['综艺', '产业叙事'], hot: true },
-      { id: 't8', title: '隆基绿能BC电池转换效率新纪录意味着什么？', category: '产业观察', author: '光伏研究院', avatar: '☀', likes: 567, comments: 189, views: 12300, time: '12小时前', tags: ['光伏', '新能源'], hot: false }
+      { id: 't8', title: '隆基绿能BC电池转换效率新纪录意味着什么？', category: '产业观察', author: '光伏研究院', avatar: '☀', likes: 567, comments: 189, views: 12300, time: '12小时前', tags: ['光伏', '新能源'], hot: false },
+      // ——— 新增：AI交互案例 ———
+      { id: 't9',  title: '我用龙虾Agent帮比亚迪写了一份产业叙事报告，AI说了什么？', category: 'AI交互案例', author: 'Agent玩家007', avatar: '🦞', likes: 2341, comments: 512, views: 48900, time: '1小时前', tags: ['AI Agent', '产业叙事', '实操'], hot: true,
+        aiInteraction: {
+          prompt: '帮我分析比亚迪第五代DM技术的产业意义，生成一份500字叙事报告',
+          reply: '好的！以下是比亚迪第五代DM技术产业叙事报告：\n\n**标题：双引擎叙事革命 — 比亚迪DM5.0如何重塑中国混动格局**\n\n2026年，比亚迪第五代DM技术以亏电油耗2.9L/100km的技术参数，正式宣告中国混动技术进入"燃油车终结者"阶段……\n\n[报告已生成，EXP积分+200，上链存证完成 ⛓️]',
+          model: 'DeepSeek-R1 via 合力智脑',
+          tokens: 1280,
+          time: '2026-06-03 09:12'
+        }
+      },
+      { id: 't10', title: 'HTTP 402协议实测：让AI Agent自主购买了一份研报', category: 'AI交互案例', author: '极客先行者', avatar: '⚡', likes: 3128, comments: 743, views: 67200, time: '30分钟前', tags: ['HTTP 402', 'AI支付', '自动化'], hot: true,
+        aiInteraction: {
+          prompt: '帮我购买最新的半导体行业研报，预算不超过50元',
+          reply: '收到！我正在执行...\n\n1. 搜索合力商城半导体相关研报 → 找到「2026 Q2产业热度研报」¥45\n2. 发起 HTTP 402 支付请求...\n3. 服务器返回 402 Payment Required，价格: ¥45，支持: HP积分/微信/支付宝\n4. 选择 HP积分 抵扣 → 消耗 225 HP\n5. 支付成功！交易哈希: 0x7a9f...3e2c ⛓️\n6. 研报PDF已获取，正在为你提取关键数据...\n\n✅ 本次自主交易完成，全程无需人工干预。',
+          model: 'Pioneer OS Agent v2.0',
+          tokens: 892,
+          time: '2026-06-03 10:28'
+        }
+      },
+      { id: 't11', title: '用合力智脑分析了华为昇腾的技术护城河，结论出乎意料', category: 'AI交互案例', author: '产业分析师小王', avatar: '💡', likes: 1876, comments: 389, views: 35600, time: '4小时前', tags: ['华为', '昇腾', 'AI分析'], hot: false,
+        aiInteraction: {
+          prompt: '从技术护城河角度分析华为昇腾AI芯片的竞争优势和潜在风险',
+          reply: '**华为昇腾技术护城河分析**\n\n**优势层：**\n• 全栈自研能力（芯片+框架+应用）使替换成本极高\n• MindSpore生态已有2.8万开发者\n• 国内算力采购政策优势明显\n\n**风险层：**\n• 制造工艺依赖中芯国际，与台积电存在代差\n• 国际市场生态竞争力仍弱于NVIDIA CUDA\n• 能源效率（TOPS/W）仍有15%差距\n\n**综合评估：** 国内市场"替代胜算"≈ 78%，国际市场"突破胜算"≈ 23%\n\n本分析已自动提交社区，EXP积分+150 🧠',
+          model: 'DeepSeek-R1 via 合力智脑',
+          tokens: 1680,
+          time: '2026-06-03 06:44'
+        }
+      },
+      { id: 't12', title: '【攻略】如何用AI Agent每天自动赚取最多积分？', category: 'AI交互案例', author: '积分猎手Lv.5', avatar: '💰', likes: 4512, comments: 1021, views: 89300, time: '2天前', tags: ['攻略', '积分', 'Agent自动化'], hot: true,
+        aiInteraction: {
+          prompt: '帮我规划今天的积分获取路径，目标最大化',
+          reply: '**今日积分最大化方案 📊**\n\n⏰ 09:00 签到 → +20 HP\n📺 09:30 观看《智造者》Ep.3 → +100 WATCH\n✍️ 10:00 自动生成比亚迪产业评论 → +200 EXP\n🗳️ 14:00 参与3个社区投票 → +240 GOV\n📡 全天 行为数据授权 → +60 DATA\n📝 20:00 提交MP叙事章节 → +150 MP\n\n**预计总收益：** 770+ 积分（各类合计）\n**建议优先兑换：** GOV积分 → HP（兑换率最高）\n\n已为你自动排程，明天同一时间继续执行 ✅',
+          model: '龙虾Agent·观看守护+内容分析双Agent',
+          tokens: 743,
+          time: '2026-06-01 08:55'
+        }
+      },
+      { id: 't13', title: '我问AI：合力平台的402协议和比特币有什么区别？', category: 'AI交互案例', author: '区块链研究所', avatar: '⛓️', likes: 987, comments: 245, views: 21800, time: '1天前', tags: ['HTTP 402', '区块链', '科普'], hot: false,
+        aiInteraction: {
+          prompt: '解释HTTP 402协议与比特币支付的核心区别',
+          reply: '**HTTP 402 vs 比特币支付**\n\n| 维度 | HTTP 402 | 比特币 |\n|------|---------|--------|\n| 本质 | 应用层协议 | 货币网络 |\n| 速度 | 毫秒级 | 分钟级 |\n| 货币 | 任意（法币/积分） | BTC/USDT |\n| 合规 | ✅中国合规 | ⚠️受限 |\n| AI友好 | ✅原生支持 | ❌需适配 |\n\n**简单说：** HTTP 402是"让AI学会自主付钱"的协议标准，比特币是"某种货币的传输系统"。合力用的是402协议+人民币/HP积分，跟比特币是两回事 😄',
+          model: 'DeepSeek-V3 via 合力智脑',
+          tokens: 520,
+          time: '2026-06-02 14:22'
+        }
+      }
     ],
-    categories: ['全部', '产业观察', '公司研究', '产品体验', '治理讨论', '行业动态'],
+    categories: ['全部', '产业观察', '公司研究', '产品体验', '治理讨论', '行业动态', 'AI交互案例'],
     scholars: [
       { id: 's1', name: '李教授', title: '清华大学经管学院', avatar: '👨‍🏫', articles: 48, followers: 12500, verified: true, field: '产业经济' },
       { id: 's2', name: '王博士', title: '中金公司首席分析师', avatar: '👨‍💼', articles: 126, followers: 34800, verified: true, field: '半导体' },
@@ -366,14 +412,37 @@ const MOCK_DATA = {
   ],
 
   products: [
-    { id: 'byd-service', name: '比亚迪汽车服务券', company: '比亚迪', emoji: '🚗', category: 'service', price: 800, originalPrice: 1500, stock: 50, desc: '比亚迪任意车型保养服务券一次，含机油更换及全车检查', tags: ['热门', '限量'] },
-    { id: 'huawei-trade', name: '华为手机以旧换新券', company: '华为', emoji: '📱', category: 'service', price: 1200, originalPrice: 2000, stock: 30, desc: '华为任意手机以旧换新，额外补贴500元', tags: ['爆款'] },
-    { id: 'smic-salon', name: '中芯国际产业沙龙票', company: '中芯国际', emoji: '🎫', category: 'show', price: 300, originalPrice: 500, stock: 100, desc: '月度产业洞察沙龙，限量参会票，与芯片大佬面对面', tags: ['知识', '稀缺'] },
-    { id: 'zhizaozhe-ticket', name: '《智造者》首映票', company: '合力生态', emoji: '🎬', category: 'show', price: 200, originalPrice: 500, stock: 200, desc: '《智造者》第一集北京首映式，含礼品袋和明星见面机会', tags: ['首映', '独家'] },
-    { id: 'catl-camp', name: '宁德时代研学营名额', company: '宁德时代', emoji: '🔋', category: 'service', price: 2000, originalPrice: 4000, stock: 20, desc: '参观宁德时代工厂，学习电池技术，获颁研学证书', tags: ['高端', '教育'] },
-    { id: 'ai-credit', name: '算力使用券100元', company: '合力生态', emoji: '⚡', category: 'digital', price: 500, originalPrice: 800, stock: 500, desc: '平台算力资源使用券，可用于龙虾Agent训练和API调用', tags: ['数字权益'] },
-    { id: 'pioneer-nft', name: 'Pioneer OS先行者NFT', company: 'Pioneer OS', emoji: '🚀', category: 'digital', price: 3000, originalPrice: 5000, stock: 100, desc: '限量版Pioneer OS先行者数字藏品，持有者享受平台永久VIP权益', tags: ['NFT', '限量', '珍藏'] },
-    { id: 'sensetime-api', name: '商汤AI API体验包', company: '商汤科技', emoji: '🤖', category: 'digital', price: 800, originalPrice: 1200, stock: 300, desc: '商汤科技API接口30天体验包，含图像识别、人脸分析等接口', tags: ['API', '开发者'] }
+    // ——— 服务券 category: 'service' ———
+    { id: 'byd-service',      name: '比亚迪汽车保养券',      company: '比亚迪',    emoji: '🚗', category: 'service', price: 800,  originalPrice: 1500, stock: 50,  desc: '比亚迪任意车型保养服务券一次，含机油更换及全车检查',          tags: ['热门', '限量'] },
+    { id: 'huawei-trade',     name: '华为手机以旧换新券',    company: '华为',      emoji: '📱', category: 'service', price: 1200, originalPrice: 2000, stock: 30,  desc: '华为任意手机以旧换新，额外补贴500元',                         tags: ['爆款'] },
+    { id: 'catl-camp',        name: '宁德时代工厂研学营',    company: '宁德时代',  emoji: '🔋', category: 'service', price: 2000, originalPrice: 4000, stock: 20,  desc: '参观宁德时代锂电工厂，学习电池技术，获颁联名研学证书',         tags: ['高端', '教育'] },
+    { id: 'xiaomi-vip',       name: '小米SU7体验驾驶权',     company: '小米集团',  emoji: '🏎', category: 'service', price: 1500, originalPrice: 3000, stock: 40,  desc: '小米SU7 Ultra限时试驾体验，含专业驾驶教练陪同，北上广深城市',  tags: ['新品', '体验'] },
+    { id: 'longi-tour',       name: '隆基光伏基地参访券',    company: '隆基绿能',  emoji: '☀️', category: 'service', price: 500,  originalPrice: 900,  stock: 60,  desc: '参访隆基绿能BC电池生产基地，含参观+专家讲解+纪念品',           tags: ['新能源', '工业旅游'] },
+    { id: 'dji-academy',      name: '大疆无人机飞手证书课', company: '大疆创新',  emoji: '🚁', category: 'service', price: 1800, originalPrice: 3500, stock: 25,  desc: '大疆正版飞手培训课程（2天），含民航局无人机操控证考试费',       tags: ['教育', '技能'] },
+    { id: 'boe-art',          name: '京东方艺术屏·年度订阅', company: '京东方',    emoji: '🖼', category: 'service', price: 600,  originalPrice: 1200, stock: 80,  desc: '京东方ArtX艺术屏数字画作年度订阅，每月上新10幅NFT画作',         tags: ['数字艺术', '科技'] },
+
+    // ——— 演出票 category: 'show' ———
+    { id: 'smic-salon',       name: '中芯国际产业沙龙票',    company: '中芯国际',  emoji: '🎫', category: 'show',    price: 300,  originalPrice: 500,  stock: 100, desc: '月度产业洞察沙龙，限量参会票，与芯片领域专家面对面交流',         tags: ['知识', '稀缺'] },
+    { id: 'zhizaozhe-ticket', name: '《智造者》北京首映票',  company: '合力生态',  emoji: '🎬', category: 'show',    price: 200,  originalPrice: 500,  stock: 200, desc: '《智造者》第一集北京首映式，含礼品袋和明星见面机会',              tags: ['首映', '独家'] },
+    { id: 'huawei-summit',    name: '华为开发者大会门票',    company: '华为',      emoji: '💻', category: 'show',    price: 1000, originalPrice: 2500, stock: 15,  desc: 'HDC 2026 开发者大会标准票，含全部主题演讲+展览参观+开发者礼包',  tags: ['限量', '开发者'] },
+    { id: 'baidu-world',      name: '百度世界大会旁听券',    company: '百度',      emoji: '🤖', category: 'show',    price: 400,  originalPrice: 800,  stock: 50,  desc: '百度世界大会旁听资格，含AI产品发布会+文心大模型演示体验',         tags: ['AI', '前沿'] },
+    { id: 'gold-medal-gz',    name: '金骏马颁奖典礼广州场', company: '合力生态',  emoji: '🏆', category: 'show',    price: 800,  originalPrice: 1600, stock: 30,  desc: '7月金骏马颁奖典礼广州站嘉宾票，含颁奖晚宴+颁奖典礼全程',         tags: ['颁奖', '7月', '高端'] },
+    { id: 'gold-medal-hk',    name: '金鲲鹏颁奖典礼中国香港场', company: '合力生态', emoji: '🐦', category: 'show', price: 1200, originalPrice: 2500, stock: 20,  desc: '12月金鲲鹏中国香港颁奖典礼嘉宾票，含跨境贵宾接待+颁奖晚宴',    tags: ['颁奖', '12月', '中国香港', '顶级'] },
+    { id: 'pioneer-launch',   name: 'Pioneer OS 发布会票',  company: 'Pioneer OS',emoji: '🚀', category: 'show',    price: 0,    originalPrice: 0,    stock: 500, desc: 'Pioneer OS 正式发布会免费入场票，首发展品体验+先行者福利',         tags: ['免费', '新品发布'] },
+
+    // ——— 数字权益 category: 'digital' ———
+    { id: 'ai-credit',        name: '算力使用券·100元',      company: '合力生态',  emoji: '⚡', category: 'digital', price: 500,  originalPrice: 800,  stock: 500, desc: '平台算力资源使用券，可用于龙虾Agent训练和API调用',               tags: ['数字权益'] },
+    { id: 'pioneer-nft',      name: 'Pioneer OS 先行者NFT',  company: 'Pioneer OS',emoji: '🚀', category: 'digital', price: 3000, originalPrice: 5000, stock: 100, desc: '限量版Pioneer OS先行者数字藏品，持有者享受平台永久VIP权益',       tags: ['NFT', '限量', '珍藏'] },
+    { id: 'sensetime-api',    name: '商汤AI API体验包',       company: '商汤科技',  emoji: '🤖', category: 'digital', price: 800,  originalPrice: 1200, stock: 300, desc: '商汤科技API接口30天体验包，含图像识别、人脸分析等接口',           tags: ['API', '开发者'] },
+    { id: 'deepseek-quota',   name: 'DeepSeek API调用额度',  company: 'DeepSeek', emoji: '🧠', category: 'digital', price: 300,  originalPrice: 600,  stock: 1000,desc: 'DeepSeek-R1满血版API调用额度10M tokens，支持推理/代码/创作',      tags: ['AI', '开发者', '热门'] },
+    { id: 'data-report-q2',   name: '2026 Q2 产业热度研报',  company: '合力生态',  emoji: '📊', category: 'digital', price: 200,  originalPrice: 400,  stock: 800, desc: '2026年Q2上市公司产业热度完整研报（PDF），含指数排行+趋势分析',    tags: ['数据', '研报'] },
+    { id: 'vip-badge',        name: '合力VIP年度标识',        company: '合力生态',  emoji: '💎', category: 'digital', price: 5000, originalPrice: 8000, stock: 200, desc: '年度VIP金色头衔+专属徽章+内测资格+优先客服通道（12个月）',       tags: ['VIP', '限量'] },
+    { id: 'harmonylink-whitepaper', name: '合力生态白皮书·实体书', company: '合力生态', emoji: '📖', category: 'digital', price: 150, originalPrice: 280, stock: 300, desc: '合力生态平台白皮书实体印刷版+PDF双版，含生态规划+技术路线',   tags: ['白皮书', '收藏'] },
+
+    // ——— AI支付专区（ai-pay 特殊分类，在402专区展示） ———
+    { id: 'ai-chat-sub',      name: '合力智脑·月度会员',     company: '合力生态',  emoji: '🤖', category: 'ai-pay',  price: 29,   originalPrice: 59,   stock: 9999,desc: '无限次高级对话+优先算力通道+AI模型切换权限',                    tags: ['订阅', '热门'] },
+    { id: 'agent-pro',        name: 'Agent专业版·3账号',     company: '龙虾Agent', emoji: '🦞', category: 'ai-pay',  price: 99,   originalPrice: 199,  stock: 9999,desc: '创建3个并行Agent+高级任务调度+自定义工作流',                    tags: ['企业', '专业'] },
+    { id: 'pioneer-api-pack', name: 'Pioneer OS API·10万次', company: 'Pioneer OS',emoji: '🚀', category: 'ai-pay',  price: 199,  originalPrice: 399,  stock: 9999,desc: '10万次API调用额度，支持创作/分析/交易全场景',                  tags: ['API', 'NEW'] }
   ],
 
   honors: [

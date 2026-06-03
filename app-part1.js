@@ -959,7 +959,57 @@ window.render_page_mall = function() {
 
 function filterMall(type, el) {
   if (type === 'ai-pay') {
-    navigate('page-ai-pay-mall');
+    // 在商城内原地渲染 AI 支付商品 + 402 协议说明入口
+    if (el) {
+      document.querySelectorAll('#page-mall .nbt-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+    const el2 = document.getElementById('mall-content');
+    if (!el2) return;
+    const products = Store.get('products');
+    const user = Store.get('user');
+    const aiPayProducts = products.filter(p => p.category === 'ai-pay');
+    el2.innerHTML = `
+      <div class="mall-banner" style="background:linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);">
+        <div class="mb-info">
+          <div class="mb-title">🤖 AI 支付专区</div>
+          <div class="mb-sub">HTTP 402 协议 · Agent 自主支付</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.55);">HP余额</div>
+          <div class="mb-points">${formatNumber(user.hp)}</div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:16px;background:linear-gradient(135deg, #0f172a, #1e3a5f);border:1px solid rgba(59,130,246,0.3);">
+        <div class="card-title" style="color:#60a5fa;">⛓️ HTTP 402 Payment Required</div>
+        <div style="font-size:13px;color:#94a3b8;line-height:1.8;">
+          HTTP 402 是专为 AI Agent 自主支付设计的协议标准。Agent 代替用户发起购买请求，服务端返回 <code style="background:#1e293b;padding:2px 6px;border-radius:4px;color:#f472b6;">402 Payment Required</code>，Agent 完成支付后获取凭证并消费服务。
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn-primary" style="background:#3b82f6;" onclick="navigate('page-ai-pay-402')">📖 查看 402 协议详解</button>
+          <button class="btn-secondary" style="background:rgba(255,255,255,0.1);color:#e2e8f0;" onclick="navigate('page-ai-pay-demo')">▶️ 交易流演示</button>
+        </div>
+      </div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text);">🤖 AI 支付商品</div>
+      <div class="product-grid">
+        ${aiPayProducts.map(p => `
+          <div class="product-card" onclick="navigate('page-product', {id:'${p.id}'})">
+            <div class="pc-img">
+              ${p.emoji}
+              ${p.tags.includes('热门') ? '<div class="pc-tag">热门</div>' : ''}
+            </div>
+            <div class="pc-body">
+              <div class="pc-name">${p.name}</div>
+              <div class="pc-company">${p.company}</div>
+              <div style="display:flex;align-items:baseline;gap:4px;">
+                <div class="pc-price">${formatNumber(p.price)}</div>
+                <div class="pc-price-label">HP</div>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
     return;
   }
   currentMallFilter = type;

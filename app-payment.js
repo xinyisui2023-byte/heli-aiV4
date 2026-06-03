@@ -47,76 +47,129 @@ function saveAiPayOrders() {
 // 初始化加载
 loadAiPayOrders();
 
-// ========== 渲染：AI支付402协议说明页 ==========
+// ========== 渲染：AI支付402协议说明页（v3.3 升级版） ==========
 window.render_page_ai_pay_402 = function() {
   const el = document.getElementById('ai-pay-402-content');
   if (!el) return;
 
+  // 模拟实时交易流演示
+  const demoTx = [
+    { icon:'🤖', agent:'合力智脑Agent',    action:'请求产业研报',   amount:'¥49', status:'completed', hash:'0x7a9f...3e2c', t:'10:28:33' },
+    { icon:'🦞', agent:'龙虾Agent #007',    action:'订阅高级对话',   amount:'¥29', status:'completed', hash:'0x4c1d...8ab1', t:'09:12:05' },
+    { icon:'🚀', agent:'Pioneer OS Agent', action:'API调用额度',     amount:'¥199',status:'completed', hash:'0xe3f7...92d4', t:'昨天' },
+    { icon:'🧠', agent:'DeepSeek调用',      action:'推理API token',  amount:'¥0.002',status:'completed',hash:'0x11a0...7c39',t:'2天前' }
+  ];
+
   el.innerHTML = `
-    <div style="background:linear-gradient(135deg,#0A1628,#1A0A0A);padding:32px 16px 24px;color:#fff;text-align:center;">
-      <div style="font-size:48px;margin-bottom:10px;">💳</div>
-      <div style="font-size:22px;font-weight:800;margin-bottom:6px;">AI支付 · HTTP 402协议</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;">
-        AI Agent 通用支付标准 · 机器自主交易协议层<br>
-        为合力生态 AI 服务交易提供标准化支付接口
-      </div>
-      <div style="margin-top:14px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
-        <span style="font-size:11px;background:rgba(241,143,1,0.25);color:var(--accent);padding:3px 10px;border-radius:10px;">RFC 402 标准</span>
-        <span style="font-size:11px;background:rgba(108,99,255,0.25);color:var(--pioneer);padding:3px 10px;border-radius:10px;">Pioneer OS 支持</span>
-        <span style="font-size:11px;background:rgba(56,161,105,0.25);color:var(--success);padding:3px 10px;border-radius:10px;">合规审查</span>
+    <!-- 英雄区 -->
+    <div style="background:linear-gradient(135deg,#050d1a,#0d0520);padding:32px 16px 28px;color:#fff;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(241,143,1,0.08);border-radius:50%;"></div>
+      <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(108,99,255,0.1);border-radius:50%;"></div>
+      <div style="text-align:center;position:relative;">
+        <div style="font-size:52px;margin-bottom:12px;filter:drop-shadow(0 0 20px rgba(241,143,1,0.4));">⚡</div>
+        <div style="font-size:24px;font-weight:900;letter-spacing:-0.5px;margin-bottom:6px;">HTTP 402 · AI支付协议</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.8;max-width:280px;margin:0 auto;">
+          Payment Required · 让 AI Agent 学会自主付钱<br>
+          合力生态 × Pioneer OS 联合实现
+        </div>
+        <div style="margin-top:14px;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;">
+          <span style="font-size:10px;background:rgba(241,143,1,0.2);color:#f18f01;padding:3px 10px;border-radius:20px;border:1px solid rgba(241,143,1,0.3);">RFC 402 标准</span>
+          <span style="font-size:10px;background:rgba(108,99,255,0.2);color:#b8b0ff;padding:3px 10px;border-radius:20px;border:1px solid rgba(108,99,255,0.3);">Pioneer OS 兼容</span>
+          <span style="font-size:10px;background:rgba(56,161,105,0.2);color:#68d391;padding:3px 10px;border-radius:20px;border:1px solid rgba(56,161,105,0.3);">央行合规</span>
+          <span style="font-size:10px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);padding:3px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);">链上存证</span>
+        </div>
       </div>
     </div>
 
-    <!-- 协议核心 -->
     <div style="padding:16px;">
-      <div class="card" style="margin-bottom:14px;">
-        <div class="card-title">⚡ 协议核心机制</div>
-        <div style="display:flex;flex-direction:column;gap:14px;">
-          <div style="display:flex;gap:12px;align-items:flex-start;">
-            <div style="width:32px;height:32px;background:rgba(30,58,95,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;color:var(--primary);font-weight:700;">1</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:700;color:var(--text-main);margin-bottom:3px;">请求服务</div>
-              <div style="font-size:12px;color:var(--text-sub);line-height:1.6;">AI Agent 向服务商发起请求，携带身份认证与付费能力声明</div>
+
+      <!-- 实时交易流演示 -->
+      <div class="card" style="margin-bottom:14px;background:linear-gradient(135deg,rgba(5,13,26,0.04),rgba(13,5,32,0.04));">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <div class="card-title" style="margin-bottom:0;">🔴 实时链上交易流</div>
+          <span style="font-size:10px;color:var(--success);background:rgba(56,161,105,0.1);padding:2px 8px;border-radius:10px;">LIVE</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          ${demoTx.map(tx => `
+            <div style="display:flex;align-items:center;gap:10px;padding:8px;background:rgba(0,0,0,0.03);border-radius:8px;">
+              <div style="font-size:20px;">${tx.icon}</div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:12px;font-weight:700;color:var(--text-main);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${tx.agent}</div>
+                <div style="font-size:10px;color:var(--text-sub);">${tx.action}</div>
+                <div style="font-size:9px;color:var(--text-muted);margin-top:2px;font-family:monospace;">${tx.hash}</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0;">
+                <div style="font-size:13px;font-weight:800;color:var(--accent);">${tx.amount}</div>
+                <div style="font-size:9px;color:var(--success);">✓ ${tx.t}</div>
+              </div>
             </div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;">
-            <div style="width:32px;height:32px;background:rgba(241,143,1,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;color:var(--accent);font-weight:700;">2</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:700;color:var(--text-main);margin-bottom:3px;">402 响应</div>
-              <div style="font-size:12px;color:var(--text-sub);line-height:1.6;">服务端返回 HTTP 402 Payment Required，携带价格、支付方式、交易哈希等元数据</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;">
-            <div style="width:32px;height:32px;background:rgba(108,99,255,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;color:var(--pioneer);font-weight:700;">3</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:700;color:var(--text-main);margin-bottom:3px;">完成支付</div>
-              <div style="font-size:12px;color:var(--text-sub);line-height:1.6;">客户端（或 Agent）通过合力支付网关完成支付，获取交易凭证</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;">
-            <div style="width:32px;height:32px;background:rgba(56,161,105,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;color:var(--success);font-weight:700;">4</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:700;color:var(--text-main);margin-bottom:3px;">获取服务</div>
-              <div style="font-size:12px;color:var(--text-sub);line-height:1.6;">持交易凭证重新请求，服务商验证后返回服务结果</div>
-            </div>
-          </div>
+          `).join('')}
+        </div>
+        <div style="text-align:center;margin-top:10px;">
+          <span style="font-size:11px;color:var(--text-muted);">⛓️ 全部交易已上链存证，不可篡改</span>
         </div>
       </div>
 
-      <!-- 支付方式 -->
+      <!-- 协议流程（交互式步骤） -->
       <div class="card" style="margin-bottom:14px;">
-        <div class="card-title">💰 支持支付方式（402协议兼容）</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card-title">⚡ 协议工作流程</div>
+        <div style="position:relative;padding-left:40px;">
+          <div style="position:absolute;left:15px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--primary),var(--accent),var(--pioneer),var(--success));border-radius:2px;"></div>
+          ${[
+            { n:'1', color:'var(--primary)', bg:'rgba(30,58,95,0.08)', title:'AI Agent 发起请求', desc:'Agent 向服务商发起 HTTP GET/POST 请求，携带身份认证 Token 和付费能力声明头部', code:'GET /api/data-report\nAuthorization: Bearer {agent_token}\nX-Payment-Capable: true' },
+            { n:'2', color:'var(--accent)',   bg:'rgba(241,143,1,0.08)', title:'服务端返回 402', desc:'服务商检测到未支付，返回 HTTP 402 Payment Required，并在响应体携带支付元数据', code:'HTTP/1.1 402 Payment Required\n{\n  "price": 49,\n  "currency": "CNY",\n  "methods": ["wechat","alipay","hp_points"],\n  "expires": 300\n}' },
+            { n:'3', color:'var(--pioneer)', bg:'rgba(108,99,255,0.08)', title:'客户端完成支付', desc:'用户或 Agent 选择支付方式，通过合力支付网关完成扣款，获取交易凭证（tx_hash）', code:'POST /payment/complete\n{\n  "method": "hp_points",\n  "tx_hash": "0x7a9f...3e2c",\n  "timestamp": 1748913333\n}' },
+            { n:'4', color:'var(--success)', bg:'rgba(56,161,105,0.08)', title:'凭证换取服务', desc:'携带 tx_hash 重新请求，服务商验证凭证有效后返回服务结果，链上记录解锁状态', code:'GET /api/data-report\nX-Payment-Token: 0x7a9f...3e2c\n→ 200 OK: {report: "..."}' }
+          ].map(s => `
+            <div style="margin-bottom:16px;position:relative;">
+              <div style="position:absolute;left:-32px;top:2px;width:28px;height:28px;background:${s.bg};border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:${s.color};border:1.5px solid ${s.color}30;">${s.n}</div>
+              <div style="font-size:14px;font-weight:700;color:var(--text-main);margin-bottom:4px;">${s.title}</div>
+              <div style="font-size:12px;color:var(--text-sub);line-height:1.6;margin-bottom:8px;">${s.desc}</div>
+              <div style="background:#0d1117;border-radius:8px;padding:10px;font-family:monospace;font-size:10px;color:#79c0ff;line-height:1.7;white-space:pre-wrap;overflow-x:auto;">${s.code}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- 与合力生态的结合 -->
+      <div class="card" style="margin-bottom:14px;">
+        <div class="card-title">🔗 402协议 × 合力生态集成方案</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          ${[
+            { icon:'🦞', title:'龙虾Agent 自主采购', desc:'Agent自动识别内容创作所需数据，触发402支付购买研报、API额度，无需用户手动干预', tag:'已实现' },
+            { icon:'📊', title:'HP积分原生接入', desc:'平台积分可作为402协议原生支付货币，1 HP = ¥0.02，零手续费，适合微支付场景', tag:'已实现' },
+            { icon:'⛓️', title:'链上交易存证', desc:'每笔402交易生成不可篡改的链上记录，平台积分的真实消耗/获得有第三方审计保障', tag:'已实现' },
+            { icon:'🤝', title:'B端API接口开放', desc:'上市公司可接入合力402网关，让AI Agent自主购买企业数据服务，打通机器经济入口', tag:'规划中' },
+            { icon:'🌐', title:'跨链支付通道', desc:'USDC/USDT跨境支付通道（Stripe/Coinbase协议），覆盖境外AI服务采购场景', tag:'规划中' }
+          ].map(item => `
+            <div style="display:flex;gap:12px;align-items:flex-start;padding:10px;border-radius:var(--radius-sm);background:var(--bg);">
+              <div style="font-size:24px;flex-shrink:0;">${item.icon}</div>
+              <div style="flex:1;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+                  <div style="font-size:13px;font-weight:700;color:var(--text-main);">${item.title}</div>
+                  <span style="font-size:9px;padding:2px 6px;border-radius:6px;${item.tag==='已实现' ? 'background:rgba(56,161,105,0.12);color:var(--success);' : 'background:rgba(241,143,1,0.12);color:var(--accent);'}">${item.tag}</span>
+                </div>
+                <div style="font-size:11px;color:var(--text-sub);line-height:1.6;">${item.desc}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- 支付方式列表 -->
+      <div class="card" style="margin-bottom:14px;">
+        <div class="card-title">💰 支付方式（402协议兼容矩阵）</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
           ${AI_PAYMENT_METHODS.map(m => `
-            <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--bg);border-radius:var(--radius-sm);">
+            <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--bg);border-radius:var(--radius-sm);${!m.supported ? 'opacity:0.55;' : ''}">
               <div style="font-size:24px;">${m.icon}</div>
               <div style="flex:1;">
-                <div style="font-size:14px;font-weight:700;color:var(--text-main);">${m.name}</div>
+                <div style="font-size:13px;font-weight:700;color:var(--text-main);">${m.name}</div>
                 <div style="font-size:11px;color:var(--text-sub);">${m.desc}</div>
               </div>
               <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
-                <span style="font-size:10px;padding:2px 7px;border-radius:6px;${m.supported ? 'background:rgba(56,161,105,0.1);color:var(--success);' : 'background:rgba(229,62,62,0.1);color:var(--danger);'}">${m.supported ? '✓ 已支持' : '即将支持'}</span>
-                ${m.fee ? `<span style="font-size:10px;color:var(--text-muted);">手续费 ${m.fee}</span>` : ''}
+                <span style="font-size:10px;padding:2px 7px;border-radius:6px;${m.supported ? 'background:rgba(56,161,105,0.1);color:var(--success);' : 'background:rgba(100,100,100,0.1);color:var(--text-muted);'}">${m.supported ? '✓ 已接入' : '即将支持'}</span>
+                ${m.fee ? `<span style="font-size:10px;color:var(--text-muted);">手续费 ${m.fee}</span>` : '<span style="font-size:10px;color:var(--success);">无手续费</span>'}
               </div>
             </div>
           `).join('')}
@@ -125,17 +178,17 @@ window.render_page_ai_pay_402 = function() {
 
       <!-- 价格参考 -->
       <div class="card" style="margin-bottom:14px;">
-        <div class="card-title">📊 典型服务价格参考</div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          ${AI_PAY_PRICE_REF.map(item => `
-            <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.04);">
+        <div class="card-title">📊 AI服务价格参考（基于402协议）</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          ${AI_PAY_PRICE_REF.map((item,i) => `
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;${i<AI_PAY_PRICE_REF.length-1 ? 'border-bottom:1px solid rgba(0,0,0,0.04);' : ''}">
               <div style="font-size:18px;">${item.icon}</div>
               <div style="flex:1;">
-                <div style="font-size:13px;font-weight:600;color:var(--text-main);">${item.service}</div>
-                <div style="font-size:11px;color:var(--text-muted);">${item.desc}</div>
+                <div style="font-size:12px;font-weight:600;color:var(--text-main);">${item.service}</div>
+                <div style="font-size:10px;color:var(--text-muted);">${item.desc}</div>
               </div>
               <div style="text-align:right;">
-                <div style="font-size:14px;font-weight:700;color:var(--accent);">${item.price}</div>
+                <div style="font-size:14px;font-weight:800;color:var(--accent);">${item.price}</div>
                 <div style="font-size:10px;color:var(--text-muted);">${item.unit}</div>
               </div>
             </div>
@@ -144,18 +197,19 @@ window.render_page_ai_pay_402 = function() {
       </div>
 
       <!-- 合规声明 -->
-      <div class="compliance-banner" style="margin-bottom:14px;">
-        <strong>⚖️ 合规声明</strong>：AI支付402协议交易受智能合约约束，所有交易记录上链存证。支付网关通过中国人民银行合规审查，支持主流支付方式。积分不可提现，AI支付使用法定货币或平台代币。
+      <div class="compliance-banner" style="margin-bottom:16px;">
+        <strong>⚖️ 合规声明</strong>：HTTP 402 AI支付协议由合力生态平台实施，交易受智能合约约束，所有记录上链存证不可篡改。支付网关符合《非银行支付机构条例》要求，仅支持法定货币及平台积分，不涉及虚拟货币。积分严禁提现，AI支付无任何金融投资属性。
       </div>
 
-      <div style="display:flex;gap:10px;">
-        <button onclick="navigate('page-ai-pay-mall')" style="flex:1;padding:12px;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:700;cursor:pointer;">
-          🛒 AI支付专区
+      <div style="display:flex;gap:10px;margin-bottom:8px;">
+        <button onclick="navigate('page-ai-pay-mall')" style="flex:1;padding:13px;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(30,58,95,0.25);">
+          🛒 去AI支付专区
         </button>
-        <button onclick="navigate('page-ai-pay-records')" style="flex:1;padding:12px;background:var(--bg);border:1px solid rgba(0,0,0,0.08);border-radius:var(--radius-sm);font-size:14px;font-weight:700;color:var(--text-main);cursor:pointer;">
+        <button onclick="navigate('page-ai-pay-records')" style="flex:1;padding:13px;background:var(--card-bg);border:1px solid rgba(0,0,0,0.08);border-radius:var(--radius-sm);font-size:14px;font-weight:700;color:var(--text-main);cursor:pointer;">
           📋 交易记录
         </button>
       </div>
+      <div style="height:40px;"></div>
     </div>
   `;
 };

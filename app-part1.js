@@ -69,13 +69,18 @@ function updateAllTabBars(pageId) {
     'page-brand': ['tab-rank', 'tab-rank2'],
     'page-mine': ['tab-mine', 'tab-mine2']
   };
-  // v4.0 AI支付402协议页面（无底部TabBar）
-  const noTabPages = ['page-ai-pay-402','page-ai-pay-mall','page-ai-pay-records','page-ai-settings'];
+  // v3.2 AI支付402协议页面（无底部TabBar）
+  const noTabPages = [
+    'page-ai-pay-402',
+    'page-ai-pay-mall',
+    'page-ai-pay-records',
+    'page-ai-settings'
+  ];
   if (noTabPages.indexOf(pageId) !== -1) {
-    document.querySelectorAll('.tab-bar').forEach(function(tb){ tb.style.display = 'none'; });
+    document.querySelectorAll('.tab-bar').forEach(tb => tb.style.display = 'none');
     return;
   }
-  document.querySelectorAll('.tab-bar').forEach(function(tb){ tb.style.display = ''; });
+  document.querySelectorAll('.tab-bar').forEach(tb => tb.style.display = '');
   const ids = tabMap[pageId] || [];
   ids.forEach(id => {
     const el = document.getElementById(id);
@@ -741,14 +746,14 @@ window.render_page_mine = function() {
         <div class="mmi-label">MP意义积分说明</div>
         <div class="mmi-arrow">›</div>
       </div>
-      <div class="mine-menu-item" onclick="navigate('page-ai-settings')">
-        <div class="mmi-icon">🤖</div>
-        <div class="mmi-label">AI 模型设置</div>
-        <div class="mmi-arrow">›</div>
-      </div>
       <div class="mine-menu-item" onclick="navigate('page-agent')">
         <div class="mmi-icon">🦞</div>
         <div class="mmi-label">我的龙虾Agent</div>
+        <div class="mmi-arrow">›</div>
+      </div>
+      <div class="mine-menu-item" onclick="navigate('page-ai-settings')">
+        <div class="mmi-icon">🤖</div>
+        <div class="mmi-label">AI 模型设置</div>
         <div class="mmi-arrow">›</div>
       </div>
       <div class="mine-menu-item" onclick="navigate('page-about')">
